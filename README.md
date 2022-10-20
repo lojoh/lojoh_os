@@ -7,7 +7,7 @@ I have followed the _Writing an OS in Rust_ series at [os.phil-opp.com](https://
 ## Build
 To build run:
 ```
-cargo build --target thumbv7em-none-eabihf
+cargo bootimage
 ```
 
 ## Run
