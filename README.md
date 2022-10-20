@@ -4,14 +4,24 @@ My own operating system written in Rust.
 
 I have followed the _Writing an OS in Rust_ series at [os.phil-opp.com](https://os.phil-opp.com)
 
-## Step 1 - A Freestanding Rust Binary
-Read more: https://os.phil-opp.com/freestanding-rust-binary/
-
+## Build
 To build run:
 ```
 cargo build --target thumbv7em-none-eabihf
 ```
 
+## Run
+To run the application you can use a virtual machine running ubuntu. See this link for instructions regarding installing and using qemu: https://www.minitool.com/partition-disk/qemu-for-windows.html
+
+
+First step is to copy target/x86_64-blog_os/debug/bootimage-lord_os.bin to D:\qemu\. Then cd to that folder:
+```
+cd D:\qemu\
+```
+...and run the file:
+```
+qemu-system-x86_64 -drive format=raw,file=bootimage-lord_os.bin
+```
 ## License
 
 This project is licensed under either of
