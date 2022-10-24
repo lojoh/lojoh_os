@@ -117,6 +117,22 @@ impl fmt::Write for Writer {
     }
 }
 
+// The one-time initialization of statics with non-const functions is a common problem in Rust.
+// Fortunately, there already exists a good solution in a crate named lazy_static.
+// This crate provides a lazy_static! macro that defines a lazily initialized static.
+// Instead of computing its value at compile time, the static lazily initializes itself when accessed for the first time.
+// Thus, the initialization happens at runtime, so arbitrarily complex initialization code is possible.
+use lazy_static::lazy_static;
+use spin::Mutex; // Allows inferior mutability. Read more: https://doc.rust-lang.org/book/ch15-05-interior-mutability.html
+
+lazy_static! {
+    pub static ref WRITER: Mutex<Writer> = Mutex::new(Writer {
+        column_position: 0,
+        color_code: ColorCode::new(Color::Yellow, Color::Black),
+        buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
+    });
+}
+
 pub fn print_something() {
     use core::fmt::Write;
     let mut writer = Writer {
