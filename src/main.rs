@@ -20,7 +20,18 @@ fn panic(_info: &PanicInfo) -> ! {
 pub extern "C" fn _start() -> ! {
     // This function is the entry point, since the linker looks for a function named `_start` by default.
 
-    vga_buffer::print_something();
+    use core::fmt::Write;
+    vga_buffer::WRITER.lock().write_str("Hello again!").unwrap();
+    write!(
+        vga_buffer::WRITER.lock(),
+        "The numbers are {} and {}",
+        42,
+        1.0 / 3.0
+    )
+    .unwrap();
+
+    // vga_buffer::print_something();
+
     // let vga_buffer = 0xb8000 as *mut u8;
 
     // for (i, &byte) in HELLO.iter().enumerate() {
