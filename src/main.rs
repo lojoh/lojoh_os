@@ -15,24 +15,12 @@ fn panic(info: &PanicInfo) -> ! {
     loop {}
 }
 
-//static HELLO: &[u8] = b"Hello World!";
-
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     // This function is the entry point, since the linker looks for a function named `_start` by default.
 
     println!("Hello world{}", "!");
-    panic!("Some panic message");
-
-    // use core::fmt::Write;
-    // vga_buffer::WRITER.lock().write_str("Hello again!").unwrap();
-    // write!(
-    //     vga_buffer::WRITER.lock(),
-    //     "The numbers are {} and {}",
-    //     42,
-    //     1.0 / 3.0
-    // )
-    // .unwrap();
+    //panic!("Some panic message");
 
     loop {}
 }
