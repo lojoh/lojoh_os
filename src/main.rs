@@ -20,15 +20,16 @@ fn panic(_info: &PanicInfo) -> ! {
 pub extern "C" fn _start() -> ! {
     // This function is the entry point, since the linker looks for a function named `_start` by default.
 
-    use core::fmt::Write;
-    vga_buffer::WRITER.lock().write_str("Hello again!").unwrap();
-    write!(
-        vga_buffer::WRITER.lock(),
-        "The numbers are {} and {}",
-        42,
-        1.0 / 3.0
-    )
-    .unwrap();
+    println!("Hello world{}", "!");
+    // use core::fmt::Write;
+    // vga_buffer::WRITER.lock().write_str("Hello again!").unwrap();
+    // write!(
+    //     vga_buffer::WRITER.lock(),
+    //     "The numbers are {} and {}",
+    //     42,
+    //     1.0 / 3.0
+    // )
+    // .unwrap();
 
     loop {}
 }

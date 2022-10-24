@@ -1,5 +1,17 @@
 use core::fmt;
+use lazy_static::lazy_static;
+use spin::Mutex; // Allows inferior mutability. Read more: https://doc.rust-lang.org/book/ch15-05-interior-mutability.html
+use volatile::Volatile;
 
+lazy_static! {
+    pub static ref WRITER: Mutex<Writer> = Mutex::new(Writer {
+        column_position: 0,
+        color_code: ColorCode::new(Color::Yellow, Color::Black),
+        buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
+    });
+}
+
+/// The standard color palette in VGA text mode.
 #[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u8)] // Actually 4 bits would be sufficient, but Rust doesn’t have a u4 type.
@@ -42,7 +54,6 @@ struct ScreenChar {
 const BUFFER_HEIGHT: usize = 25;
 const BUFFER_WIDTH: usize = 80;
 
-use volatile::Volatile;
 #[repr(transparent)]
 struct Buffer {
     chars: [[Volatile<ScreenChar>; BUFFER_WIDTH]; BUFFER_HEIGHT],
@@ -55,17 +66,6 @@ pub struct Writer {
 }
 
 impl Writer {
-    pub fn write_string(&mut self, s: &str) {
-        for byte in s.bytes() {
-            match byte {
-                // Check if it is a printable ASCII byte
-                0x20..=0x7e | b'\n' => self.write_byte(byte),
-                // If it is not part of the printable ASCII range, print a '■' symbol
-                _ => self.write_byte(0xfe),
-            }
-        }
-    }
-
     pub fn write_byte(&mut self, byte: u8) {
         match byte {
             b'\n' => self.new_line(),
@@ -85,10 +85,20 @@ impl Writer {
             }
         }
     }
+    pub fn write_string(&mut self, s: &str) {
+        for byte in s.bytes() {
+            match byte {
+                // Check if it is a printable ASCII byte
+                0x20..=0x7e | b'\n' => self.write_byte(byte),
+                // If it is not part of the printable ASCII range, print a '■' symbol
+                _ => self.write_byte(0xfe),
+            }
+        }
+    }
 
     fn new_line(&mut self) {
         for row in 1..BUFFER_HEIGHT {
-            for col in 1..BUFFER_WIDTH {
+            for col in 0..BUFFER_WIDTH {
                 let character = self.buffer.chars[row][col].read();
                 self.buffer.chars[row - 1][col].write(character);
             }
@@ -117,18 +127,19 @@ impl fmt::Write for Writer {
     }
 }
 
-// The one-time initialization of statics with non-const functions is a common problem in Rust.
-// Fortunately, there already exists a good solution in a crate named lazy_static.
-// This crate provides a lazy_static! macro that defines a lazily initialized static.
-// Instead of computing its value at compile time, the static lazily initializes itself when accessed for the first time.
-// Thus, the initialization happens at runtime, so arbitrarily complex initialization code is possible.
-use lazy_static::lazy_static;
-use spin::Mutex; // Allows inferior mutability. Read more: https://doc.rust-lang.org/book/ch15-05-interior-mutability.html
+#[macro_export]
+macro_rules! print {
+    ($($arg:tt)*) => ($crate::vga_buffer::_print(format_args!($($arg)*)));
+}
 
-lazy_static! {
-    pub static ref WRITER: Mutex<Writer> = Mutex::new(Writer {
-        column_position: 0,
-        color_code: ColorCode::new(Color::Yellow, Color::Black),
-        buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
-    });
+#[macro_export]
+macro_rules! println {
+    () => ($crate::print!("\n"));
+    ($($arg:tt)*) => ($crate::print!("{}\n", format_args!($($arg)*)));
+}
+
+#[doc(hidden)]
+pub fn _print(args: fmt::Arguments) {
+    use core::fmt::Write;
+    WRITER.lock().write_fmt(args).unwrap();
 }
