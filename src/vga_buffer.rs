@@ -132,20 +132,3 @@ lazy_static! {
         buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
     });
 }
-
-pub fn print_something() {
-    use core::fmt::Write;
-    let mut writer = Writer {
-        column_position: 0,
-        color_code: ColorCode::new(Color::Yellow, Color::Black),
-        buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
-    };
-
-    writer.write_byte(b'H');
-    writer.write_string("ello ");
-    writer.write_string("Wörld!");
-
-    // The write! call returns a Result which causes a warning if not used, so we call the unwrap function on it, which panics if an error occurs.
-    // This isn’t a problem in our case, since writes to the VGA buffer never fail.
-    write!(writer, "The numbers are {} and {}", 42, 1.0 / 3.0).unwrap();
-}
