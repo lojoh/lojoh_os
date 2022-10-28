@@ -9,6 +9,7 @@ edition = "2021"
 bootloader = "0.9.8"
 volatile = "0.2.6"
 spin = "0.5.2"       # https://en.wikipedia.org/wiki/Spinlock
+#x86_64 = "0.14.2"
 
 [dependencies.lazy_static]
 version = "1.0"
@@ -23,3 +24,6 @@ features = ["spin_no_std"]
 # the profile used for `cargo build --release`
 # [profile.release]
 # panic = "abort" # disable stack unwinding on panic
+
+#[package.metadata.bootimage]
+#test-args = ["-device", "isa-debug-exit,iobase=0xf4,iosize=0x04"]
