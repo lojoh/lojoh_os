@@ -4,6 +4,23 @@ My own operating system written in Rust.
 
 I have followed the _Writing an OS in Rust_ series at [os.phil-opp.com](https://os.phil-opp.com)
 
+## Set nightly
+Rust has three release channels: stable, beta, and nightly. The Rust Book explains the difference between these channels really well, so take a minute and check it out: https://doc.rust-lang.org/book/appendix-07-nightly-rust.html#choo-choo-release-channels-and-riding-the-trains. 
+
+For building an operating system, we will need some experimental features that are only available on the nightly channel, so we need to install a nightly version of Rust.
+```
+rustup override set nightly
+```
+
+## Install deps
+```
+rustup component add llvm-tools-preview
+```
+
+```
+cargo install bootimage
+```
+
 ## Build
 To build run:
 ```
