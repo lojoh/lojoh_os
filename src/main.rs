@@ -36,8 +36,8 @@ fn panic(info: &PanicInfo) -> ! {
     lord_os::test_panic_handler(info)
 }
 
-/// TESTING ///
-#[test_case]
-fn trivial_assertion() {
-    assert_eq!(1, 1);
-}
+// TESTING
+// #[test_case]
+// fn trivial_assertion() {
+//     assert_eq!(1, 1);
+// }
