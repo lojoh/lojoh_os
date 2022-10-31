@@ -22,7 +22,6 @@ cargo install bootimage
 ```
 
 ## Build
-To build run:
 ```
 cargo bootimage
 ```
