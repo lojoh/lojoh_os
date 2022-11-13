@@ -5,7 +5,7 @@
 #![reexport_test_harness_main = "test_main"]
 
 use core::panic::PanicInfo;
-use lord_os::{exit_qemu, serial_println, QemuExitCode};
+use lord_os::{exit_qemu, serial_print, serial_println, QemuExitCode};
 
 #[panic_handler]
 fn panic(_info: &PanicInfo) -> ! {
@@ -29,4 +29,10 @@ pub fn test_runner(tests: &[&dyn Fn()]) {
         exit_qemu(QemuExitCode::Failed);
     }
     exit_qemu(QemuExitCode::Success);
+}
+
+#[test_case]
+fn should_fail() {
+    serial_print!("should_panic::should_fail...\t");
+    assert_eq!(0, 1);
 }
