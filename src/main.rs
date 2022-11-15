@@ -15,9 +15,16 @@ pub extern "C" fn _start() -> ! {
     // This function is the entry point, since the linker looks for a function named `_start` by default.
 
     println!("Hello world{}", "!");
-    //panic!("Some panic message");
+
+    lord_os::init();
+
+    // breakpoint exception
+    x86_64::instructions::interrupts::int3();
+
     #[cfg(test)]
     test_main();
+
+    println!("It did not crash!");
 
     loop {}
 }
