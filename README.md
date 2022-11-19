@@ -30,7 +30,11 @@ cargo bootimage
 To run the application you can use a virtual machine. See this link for instructions regarding installing and using qemu: https://www.minitool.com/partition-disk/qemu-for-windows.html
 
 
-First step is to copy target/x86_64-blog_os/debug/bootimage-lord_os.bin to D:\qemu\. Then cd to that folder:
+First step is to copy target/x86_64-blog_os/debug/bootimage-lord_os.bin to D:\qemu\: 
+```
+copy .\target\x86_64-lord_os\debug\bootimage-lord_os.bin D:\qemu\
+```
+Then cd to that folder:
 ```
 cd D:\qemu\
 ```
