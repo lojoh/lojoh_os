@@ -16,8 +16,6 @@ uart_16550 = "0.2.0"
 version = "1.0"
 features = ["spin_no_std"]
 
-# Note: Panic handling moved to x86_64-lord_os.json
-
 # the profile used for `cargo build`
 [profile.dev]
 panic = "abort" # disable stack unwinding on panic
