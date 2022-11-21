@@ -1,4 +1,4 @@
-# Lord OS
+# Lojoh OS
 
 My own operating system written in Rust.
 
