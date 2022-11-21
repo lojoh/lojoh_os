@@ -5,12 +5,15 @@ My own operating system written in Rust.
 I have followed the _Writing an OS in Rust_ series at [os.phil-opp.com](https://os.phil-opp.com)
 
 ## Roadmap
-- [ ] A Freestanding Rust Binary
-- [x] A Freestanding Rust Binary
-- [o] A Freestanding Rust Binary
-- [ ] A Freestanding Rust Binary
-- [-] A Freestanding Rust Binary
-
+- [x] Create operating system kernel
+- [x] Implement support for VGA Text Mode
+- [x] Create a testing framework
+- [x] Handling CPU Exceptions
+- [x] Handling Double (and Triple) Faults
+- [ ] Set up Interrupt Controller for Hardware Interrupts
+- [ ] Memory Management: Paging
+- [ ] Memory Management: Support for Heap Allocation
+- [ ] Support for Async/Await
 
 ## Set nightly
 Rust has three release channels: stable, beta, and nightly. The Rust Book explains the difference between these channels really well, so take a minute and check it out: https://doc.rust-lang.org/book/appendix-07-nightly-rust.html#choo-choo-release-channels-and-riding-the-trains. 
