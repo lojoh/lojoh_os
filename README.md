@@ -16,14 +16,14 @@ I have followed the _Writing an OS in Rust_ series at [os.phil-opp.com](https://
 - [ ] Support for Async/Await
 
 ## Set nightly
-Rust has three release channels: stable, beta, and nightly. The Rust Book explains the difference between these channels really well, so take a minute and check it out: https://doc.rust-lang.org/book/appendix-07-nightly-rust.html#choo-choo-release-channels-and-riding-the-trains. 
+Rust has three release channels: stable, beta, and nightly. The Rust Book explains the difference between these channels really well: https://doc.rust-lang.org/book/appendix-07-nightly-rust.html#choo-choo-release-channels-and-riding-the-trains. 
 
 For building an operating system, we will need some experimental features that are only available on the nightly channel, so we need to install a nightly version of Rust.
 ```
 rustup override set nightly
 ```
 
-## Install deps
+## Install dependencies
 ```
 rustup component add llvm-tools-preview
 ```
@@ -41,17 +41,17 @@ cargo bootimage
 To run the application you can use a virtual machine. See this link for instructions regarding installing and using qemu: https://www.minitool.com/partition-disk/qemu-for-windows.html
 
 
-First step is to copy target/x86_64-blog_os/debug/bootimage-lord_os.bin to D:\qemu\: 
+First step is to copy target/x86_64-lojoh_os/debug/bootimage-lojoh_os.bin to the folder where qemu is running: 
 ```
-copy .\target\x86_64-lord_os\debug\bootimage-lord_os.bin D:\qemu\
+copy .\target\x86_64-lord_os\debug\bootimage-lord_os.bin <qemu-location>
 ```
-Then cd to that folder:
+Then cd to qemu-location:
 ```
-cd D:\qemu\
+cd <qemu-location>
 ```
-...and run the file:
+...and run the os:
 ```
-qemu-system-x86_64 -drive format=raw,file=bootimage-lord_os.bin
+qemu-system-x86_64 -drive format=raw,file=bootimage-lojoh_os.bin
 ```
 ## License
 
