@@ -2,7 +2,7 @@
 
 My own operating system written in Rust.
 
-I have followed the _Writing an OS in Rust_ series at [os.phil-opp.com](https://os.phil-opp.com)
+I am following the _Writing an OS in Rust_ series at [os.phil-opp.com](https://os.phil-opp.com).
 
 ## Roadmap
 This project is a work in progress, below is the current status of the roadmap:
@@ -40,7 +40,6 @@ cargo bootimage
 
 ## Run
 To run the application you can use a virtual machine. See this link for instructions regarding installing and using qemu: https://www.minitool.com/partition-disk/qemu-for-windows.html
-
 
 First step is to copy target/x86_64-lojoh_os/debug/bootimage-lojoh_os.bin to the folder where qemu is running: 
 ```
