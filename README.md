@@ -5,10 +5,10 @@ My own operating system written in Rust.
 I have followed the _Writing an OS in Rust_ series at [os.phil-opp.com](https://os.phil-opp.com)
 
 ## Roadmap
-- [] A Freestanding Rust Binary
+- [ ] A Freestanding Rust Binary
 - [x] A Freestanding Rust Binary
 - [o] A Freestanding Rust Binary
-- [] A Freestanding Rust Binary
+- [ ] A Freestanding Rust Binary
 - [-] A Freestanding Rust Binary
 
 
