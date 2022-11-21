@@ -2,7 +2,7 @@
 
 My own operating system written in Rust.
 
-I am following the _Writing an OS in Rust_ series at [os.phil-opp.com](https://os.phil-opp.com).
+I am following the _Writing an OS in Rust_ series at [os.phil-opp.com](https://os.phil-opp.com). If you use this and find it helpful please head over there and support him.
 
 ## Roadmap
 This project is a work in progress, below is the current status of the roadmap:
