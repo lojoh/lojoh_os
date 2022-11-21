@@ -7,6 +7,9 @@ I have followed the _Writing an OS in Rust_ series at [os.phil-opp.com](https://
 ## Roadmap
 - [] A Freestanding Rust Binary
 - [x] A Freestanding Rust Binary
+- [o] A Freestanding Rust Binary
+- [] A Freestanding Rust Binary
+- [-] A Freestanding Rust Binary
 
 
 ## Set nightly
