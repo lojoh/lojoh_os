@@ -4,14 +4,14 @@
 
 use core::panic::PanicInfo;
 use lazy_static::lazy_static;
-use lord_os::{exit_qemu, serial_print, serial_println, QemuExitCode};
+use lojoh_os::{exit_qemu, serial_print, serial_println, QemuExitCode};
 use x86_64::structures::idt::{InterruptDescriptorTable, InterruptStackFrame};
 
 #[no_mangle]
 pub extern "C" fn _start() {
     serial_print!("stack_overflow::stack_overflow...\t");
 
-    lord_os::gdt::init();
+    lojoh_os::gdt::init();
     init_test_id();
 
     // trigger a stack overflow
@@ -22,7 +22,7 @@ pub extern "C" fn _start() {
 
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
-    lord_os::test_panic_handler(info)
+    lojoh_os::test_panic_handler(info)
 }
 #[allow(unconditional_recursion)]
 fn stack_overflow() {
@@ -40,7 +40,7 @@ lazy_static! {
         unsafe {
             idt.double_fault
                 .set_handler_fn(test_double_fault_handler)
-                .set_stack_index(lord_os::gdt::DOUBLE_FAULT_IST_INDEX);
+                .set_stack_index(lojoh_os::gdt::DOUBLE_FAULT_IST_INDEX);
         }
 
         idt

@@ -1,11 +1,11 @@
 #![no_std] // don't link the Rust standard library
 #![no_main] // disable all Rust-level entry points
 #![feature(custom_test_frameworks)]
-#![test_runner(lord_os::test_runner)]
+#![test_runner(lojoh_os::test_runner)]
 #![reexport_test_harness_main = "test_main"]
 
 use core::panic::PanicInfo;
-use lord_os::println;
+use lojoh_os::println;
 
 // By using the #[no_mangle] attribute, we disable name mangling to ensure that the Rust compiler really outputs a function with the name _start. Without the attribute, the compiler would generate some cryptic _ZN3blog_os4_start7hb173fedf945531caE symbol to give every function a unique name. The attribute is required because we need to tell the name of the entry point function to the linker in the next step.
 // We also have to mark the function as extern "C" to tell the compiler that it should use the C calling convention for this function (instead of the unspecified Rust calling convention). The reason for naming the function _start is that this is the default entry point name for most systems.
@@ -16,7 +16,7 @@ pub extern "C" fn _start() -> ! {
 
     println!("Hello world{}", "!");
 
-    lord_os::init();
+    lojoh_os::init();
 
     // create a breakpoint exception
     //x86_64::instructions::interrupts::int3();
@@ -50,7 +50,7 @@ fn panic(info: &PanicInfo) -> ! {
 #[cfg(test)]
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
-    lord_os::test_panic_handler(info)
+    lojoh_os::test_panic_handler(info)
 }
 
 // TESTING

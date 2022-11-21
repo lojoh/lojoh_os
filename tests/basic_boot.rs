@@ -1,11 +1,11 @@
 #![no_std]
 #![no_main]
 #![feature(custom_test_frameworks)]
-#![test_runner(lord_os::test_runner)]
+#![test_runner(lojoh_os::test_runner)]
 #![reexport_test_harness_main = "test_main"]
 
 use core::panic::PanicInfo;
-use lord_os::println;
+use lojoh_os::println;
 
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
@@ -18,7 +18,7 @@ pub extern "C" fn _start() -> ! {
 
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
-    lord_os::test_panic_handler(info)
+    lojoh_os::test_panic_handler(info)
 }
 
 // Test cases
