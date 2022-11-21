@@ -5,12 +5,13 @@ My own operating system written in Rust.
 I have followed the _Writing an OS in Rust_ series at [os.phil-opp.com](https://os.phil-opp.com)
 
 ## Roadmap
+This project is a work in progress, below is the current status of the roadmap:
 - [x] Create operating system kernel
 - [x] Implement support for VGA Text Mode
 - [x] Create a testing framework
 - [x] Handling CPU Exceptions
 - [x] Handling Double (and Triple) Faults
-- [ ] Set up Interrupt Controller for Hardware Interrupts
+- [ ] Set up Interrupt Controller for Hardware Interrupts (in progress)
 - [ ] Memory Management: Paging
 - [ ] Memory Management: Support for Heap Allocation
 - [ ] Support for Async/Await
