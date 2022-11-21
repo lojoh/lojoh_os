@@ -11,7 +11,7 @@ This project is a work in progress, below is the current status of the roadmap:
 - [x] Create a testing framework
 - [x] Handling CPU Exceptions
 - [x] Handling Double (and Triple) Faults
-- [ ] Set up Interrupt Controller for Hardware Interrupts (in progress)
+- [ ] Set up Interrupt Controller for Hardware Interrupts
 - [ ] Memory Management: Paging
 - [ ] Memory Management: Support for Heap Allocation
 - [ ] Support for Async/Await
