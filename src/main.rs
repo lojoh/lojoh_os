@@ -14,7 +14,7 @@ use lojoh_os::println;
 pub extern "C" fn _start() -> ! {
     // This function is the entry point, since the linker looks for a function named `_start` by default.
 
-    println!("Hello world{}", "!");
+    println!("Welcome to lojoh OS");
 
     lojoh_os::init();
 
