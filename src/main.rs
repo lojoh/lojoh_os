@@ -13,8 +13,13 @@ use lojoh_os::println;
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     // This function is the entry point, since the linker looks for a function named `_start` by default.
-
     println!("Welcome to lojoh OS");
+
+    println!("----------------------");
+    println!("┬  ┌─┐ ┬┌─┐┬ ┬  ╔═╗╔═╗");
+    println!("│  │ │ ││ │├─┤  ║ ║╚═╗");
+    println!("┴─┘└─┘└┘└─┘┴ ┴  ╚═╝╚═╝");
+    println!("----------------------");
 
     lojoh_os::init();
 
