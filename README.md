@@ -43,7 +43,7 @@ To run the application you can use a virtual machine. See this link for instruct
 
 First step is to copy target/x86_64-lojoh_os/debug/bootimage-lojoh_os.bin to the folder where qemu is running: 
 ```
-copy .\target\x86_64-lord_os\debug\bootimage-lord_os.bin <qemu-location>
+copy .\target\x86_64-lojoh_os\debug\bootimage-lojoh_os.bin <qemu-location>
 ```
 Then cd to qemu-location:
 ```
